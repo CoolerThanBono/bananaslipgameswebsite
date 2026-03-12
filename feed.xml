@@ -3,28 +3,32 @@
     <title>Banana Slip Games</title>
     <link href="https://bananaslipgames.com/feed.xml" rel="self" />
     <link href="https://bananaslipgames.com" />
-    <updated>2026-03-12T14:26:18-05:00</updated>
+    <updated>2026-03-12T14:48:09-05:00</updated>
     <author>
         <name>Cullen Berglove</name>
     </author>
     <id>https://bananaslipgames.com</id>
 
     <entry>
-        <title>This is a Test Post!</title>
+        <title>More to come soon!</title>
         <author>
             <name>Cullen Berglove</name>
         </author>
-        <link href="https://bananaslipgames.com/this-is-a-test-post.html"/>
-        <id>https://bananaslipgames.com/this-is-a-test-post.html</id>
+        <link href="https://bananaslipgames.com/more-to-come-soon.html"/>
+        <id>https://bananaslipgames.com/more-to-come-soon.html</id>
 
-        <updated>2026-03-12T14:26:18-05:00</updated>
-            <summary></summary>
+        <updated>2026-03-12T14:46:51-05:00</updated>
+            <summary type="html">
+                <![CDATA[
+                    <figure class="post__image"><img loading="lazy"  src="https://bananaslipgames.com/media/posts/2/bananaslipgames.PNG" alt="" width="1227" height="685" sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://bananaslipgames.com/media/posts/2/responsive/bananaslipgames-xs.PNG 300w ,https://bananaslipgames.com/media/posts/2/responsive/bananaslipgames-sm.PNG 480w ,https://bananaslipgames.com/media/posts/2/responsive/bananaslipgames-md.PNG 768w ,https://bananaslipgames.com/media/posts/2/responsive/bananaslipgames-lg.PNG 1024w"></figure>
+
+                ]]>
+            </summary>
         <content type="html">
             <![CDATA[
-                
-  <p>
-    
-  </p>
+                <figure class="post__image"><img loading="lazy"  src="https://bananaslipgames.com/media/posts/2/bananaslipgames.PNG" alt="" width="1227" height="685" sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://bananaslipgames.com/media/posts/2/responsive/bananaslipgames-xs.PNG 300w ,https://bananaslipgames.com/media/posts/2/responsive/bananaslipgames-sm.PNG 480w ,https://bananaslipgames.com/media/posts/2/responsive/bananaslipgames-md.PNG 768w ,https://bananaslipgames.com/media/posts/2/responsive/bananaslipgames-lg.PNG 1024w"></figure>
+
+<p>Wow, a photo, maybe this website isn't lame after all!</p>
             ]]>
         </content>
     </entry>
