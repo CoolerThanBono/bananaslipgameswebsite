@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+    <title>Banana Slip Games</title>
+    <link href="https://bananaslipgames.com/feed.xml" rel="self" />
+    <link href="https://bananaslipgames.com" />
+    <updated>2026-03-12T14:26:18-05:00</updated>
+    <author>
+        <name>Cullen Berglove</name>
+    </author>
+    <id>https://bananaslipgames.com</id>
+
+    <entry>
+        <title>This is a Test Post!</title>
+        <author>
+            <name>Cullen Berglove</name>
+        </author>
+        <link href="https://bananaslipgames.com/this-is-a-test-post.html"/>
+        <id>https://bananaslipgames.com/this-is-a-test-post.html</id>
+
+        <updated>2026-03-12T14:26:18-05:00</updated>
+            <summary></summary>
+        <content type="html">
+            <![CDATA[
+                
+  <p>
+    
+  </p>
+            ]]>
+        </content>
+    </entry>
+</feed>
