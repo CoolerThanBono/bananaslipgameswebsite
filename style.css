@@ -232,6 +232,50 @@ footer {
   letter-spacing: 0.05em;
 }
 
+/* ── Social Links ── */
+.socials {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.socials-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.socials-links {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(90, 26, 138, 0.5);
+  border: 2px solid var(--accent-purple);
+  border-radius: 999px;
+  color: var(--banana);
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.55rem 1.2rem;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.social-btn:hover {
+  background: var(--banana);
+  color: var(--bg-deep);
+  border-color: var(--banana);
+  transform: scale(1.06);
+}
+
 /* ── Click Burst ── */
 @keyframes burstFade {
   0%   { opacity: 1;  transform: translate(-50%, -50%) translate(0, 0) scale(1.2); }
@@ -252,5 +296,10 @@ footer {
 
   .logo-wrap img {
     width: 260px;
+  }
+
+  .social-btn {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
   }
 }
