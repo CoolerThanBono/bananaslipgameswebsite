@@ -187,10 +187,25 @@
 
   let inFlight = 0;
 
-  function launchBanana(amount) {
+  const VOLLEY_GAP_MS = 80; // delay between bananas in one click
+
+  // One click = one banana per multiplier, launched as a little volley
+  function launchVolley(amount) {
+    for (let i = 0; i < amount; i++) {
+      setTimeout(() => launchBanana(i, amount), i * VOLLEY_GAP_MS);
+    }
+  }
+
+  function launchBanana(i, count) {
     const from = pointIn(box, 0.5, 0.18);
     const to   = pointIn(luna, 0.24, 0.48);
-    const peak = Math.min(from.y, to.y) - 70;
+
+    // fan each banana in the volley onto a slightly different arc
+    const spread = count > 1 ? (i / (count - 1)) - 0.5 : 0;   // -0.5 .. 0.5
+    const lift   = 70 + spread * 60 + (Math.random() * 16 - 8);
+    const peak   = Math.min(from.y, to.y) - lift;
+    const startX = from.x + spread * 40;
+    const spin   = 520 + Math.round(Math.random() * 120) * (i % 2 ? -1 : 1);
 
     const b = document.createElement('span');
     b.className = 'flying-banana';
@@ -201,7 +216,7 @@
     const half = b.offsetWidth / 2;
     const at = (x, y, rot, s) =>
       'translate(' + (x - half) + 'px,' + (y - half) + 'px) rotate(' + rot + 'deg) scale(' + s + ')';
-    const mid = { x: (from.x + to.x) / 2, y: peak };
+    const mid = { x: (startX + to.x) / 2, y: peak };
 
     box.classList.remove('pop');
     void box.offsetWidth;
@@ -211,20 +226,20 @@
     luna.classList.add('open', 'happy');
 
     const anim = b.animate([
-      { transform: at(from.x, from.y, 0, 0.6) },
-      { transform: at((from.x + mid.x) / 2, (from.y + peak) / 2 - 20, 160, 1) },
-      { transform: at(mid.x, mid.y, 300, 1.1) },
-      { transform: at((mid.x + to.x) / 2, (peak + to.y) / 2 - 10, 460, 1) },
-      { transform: at(to.x, to.y, 560, 0.5) },
+      { transform: at(startX, from.y, 0, 0.6) },
+      { transform: at((startX + mid.x) / 2, (from.y + peak) / 2 - 20, spin * 0.3, 1) },
+      { transform: at(mid.x, mid.y, spin * 0.55, 1.1) },
+      { transform: at((mid.x + to.x) / 2, (peak + to.y) / 2 - 10, spin * 0.8, 1) },
+      { transform: at(to.x, to.y, spin, 0.5) },
     ], { duration: FLIGHT_MS, easing: 'ease-in-out' });
 
     anim.onfinish = () => {
       b.remove();
-      chomp(to, amount);
+      chomp(to, i);
     };
   }
 
-  function chomp(at, amount) {
+  function chomp(at, i) {
     inFlight = Math.max(0, inFlight - 1);
     luna.classList.remove('chomp');
     void luna.getBoundingClientRect();
@@ -233,8 +248,8 @@
 
     const yum = document.createElement('span');
     yum.className = 'yum';
-    yum.textContent = '+' + amount + ' 🍌';
-    yum.style.left = at.x + 'px';
+    yum.textContent = '+1';
+    yum.style.left = (at.x + (i % 2 ? 14 : -14)) + 'px';
     yum.style.top = (at.y - 30) + 'px';
     stage.appendChild(yum);
     yum.addEventListener('animationend', () => yum.remove(), { once: true });
@@ -255,7 +270,7 @@
     render();
     bump(totalEl);
     bump(bucksEl);
-    launchBanana(amount);
+    launchVolley(amount);
     if (state.won) setTimeout(() => winName.focus({ preventScroll: true }), 300);
   });
 
