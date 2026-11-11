@@ -1,0 +1,437 @@
+/* ============================================================
+   Feed Luna — banana incremental (luna.css)
+   ============================================================ */
+
+.luna-game {
+  margin-top: 0;
+}
+
+.luna-game,
+.luna-game * {
+  cursor: none; /* keep the site's banana cursor in charge */
+}
+
+.luna-game h2 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(0.85rem, 2.6vw, 1.15rem);
+  color: var(--banana);
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+  animation: glowPulse 2.5s ease-in-out infinite;
+}
+
+.luna-sub {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ── Stage: banana box on the left, Luna on the right ── */
+.luna-stage {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 220px;
+  padding: 0 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 3px dashed rgba(201, 174, 240, 0.25);
+}
+
+.banana-box {
+  width: 150px;
+  max-width: 38%;
+  height: auto;
+  transform-origin: 50% 100%;
+}
+
+.banana-box.pop {
+  animation: boxPop 0.25s ease;
+}
+
+@keyframes boxPop {
+  0%   { transform: scale(1, 1); }
+  40%  { transform: scale(1.08, 0.92); }
+  100% { transform: scale(1, 1); }
+}
+
+.luna {
+  width: 200px;
+  max-width: 50%;
+  height: auto;
+  filter: drop-shadow(0 0 10px rgba(245, 196, 0, 0.35));
+  overflow: visible;
+}
+
+/* tail wag */
+.luna .tail {
+  transform-origin: 160px 150px;
+  animation: wag 0.9s ease-in-out infinite;
+}
+
+.luna.happy .tail {
+  animation-duration: 0.25s;
+}
+
+@keyframes wag {
+  0%, 100% { transform: rotate(-8deg); }
+  50%      { transform: rotate(14deg); }
+}
+
+/* head bob + jaw chomp */
+.luna .head {
+  transform-origin: 100px 115px;
+  transition: transform 0.15s ease;
+}
+
+.luna.open .head {
+  transform: rotate(-6deg);
+}
+
+.luna .jaw {
+  transform-origin: 74px 104px;
+  transition: transform 0.12s ease;
+}
+
+.luna.open .jaw {
+  transform: rotate(-22deg);
+}
+
+.luna.chomp .head {
+  animation: chompHead 0.35s ease;
+}
+
+.luna.chomp .jaw {
+  animation: chompJaw 0.35s ease;
+}
+
+@keyframes chompHead {
+  0%   { transform: rotate(-6deg); }
+  35%  { transform: rotate(4deg) translateY(3px); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes chompJaw {
+  0%   { transform: rotate(-22deg); }
+  30%  { transform: rotate(0deg); }
+  55%  { transform: rotate(-10deg); }
+  80%  { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* flying banana + "+N" pop-up */
+.flying-banana {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 2rem;
+  line-height: 1;
+  pointer-events: none;
+  z-index: 2;
+  will-change: transform;
+}
+
+.yum {
+  position: absolute;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.8rem;
+  color: var(--banana-light);
+  text-shadow: 0 0 8px var(--banana);
+  pointer-events: none;
+  z-index: 3;
+  animation: yumFloat 0.9s ease-out forwards;
+  white-space: nowrap;
+}
+
+@keyframes yumFloat {
+  0%   { opacity: 0; transform: translate(-50%, 0) scale(0.6); }
+  20%  { opacity: 1; transform: translate(-50%, -12px) scale(1.15); }
+  100% { opacity: 0; transform: translate(-50%, -55px) scale(1); }
+}
+
+/* ── Counters ── */
+.luna-stats {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.luna-stat {
+  background: rgba(26, 0, 40, 0.6);
+  border: 2px solid var(--accent-purple);
+  border-radius: 0.9rem;
+  padding: 0.7rem 1.1rem;
+  min-width: 180px;
+  flex: 1 1 180px;
+}
+
+.luna-stat-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.luna-stat-value {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(1.1rem, 4vw, 1.5rem);
+  color: var(--banana);
+  font-variant-numeric: tabular-nums;
+}
+
+.luna-stat-value.bump {
+  animation: bump 0.2s ease;
+}
+
+@keyframes bump {
+  50% { transform: scale(1.15); }
+}
+
+/* progress to 10,000 */
+.luna-progress {
+  height: 12px;
+  background: rgba(26, 0, 40, 0.7);
+  border: 2px solid var(--accent-purple);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.4rem;
+}
+
+.luna-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--banana), var(--banana-light));
+  transition: width 0.25s ease;
+}
+
+.luna-progress-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+/* ── Buttons ── */
+.feed-btn {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(0.8rem, 2.6vw, 1rem);
+  color: var(--bg-deep);
+  background: var(--banana);
+  border: none;
+  border-radius: 999px;
+  padding: 1rem 2rem;
+  box-shadow: 0 6px 0 #b38f00, 0 0 24px rgba(245, 196, 0, 0.45);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.2s ease;
+  margin-bottom: 0.6rem;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.feed-btn:hover {
+  background: var(--banana-light);
+}
+
+.feed-btn:active {
+  transform: translateY(5px);
+  box-shadow: 0 1px 0 #b38f00, 0 0 16px rgba(245, 196, 0, 0.45);
+}
+
+.feed-btn:disabled {
+  opacity: 0.5;
+  transform: none;
+}
+
+.feed-rate {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.luna-section-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.8rem;
+}
+
+.upgrades {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.upgrade-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(90, 26, 138, 0.5);
+  border: 2px solid var(--accent-purple);
+  border-radius: 0.9rem;
+  color: var(--text-light);
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem;
+  padding: 0.75rem 0.5rem;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.upgrade-btn .up-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.85rem;
+  color: var(--banana);
+}
+
+.upgrade-btn:not(:disabled):hover {
+  border-color: var(--banana);
+  transform: scale(1.04);
+}
+
+.upgrade-btn:disabled {
+  opacity: 0.45;
+}
+
+.upgrade-btn.owned {
+  opacity: 1;
+  border-color: var(--banana);
+  background: rgba(245, 196, 0, 0.12);
+}
+
+/* ── Win panel ── */
+.win-panel {
+  background: rgba(245, 196, 0, 0.1);
+  border: 2px solid var(--banana);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.luna-game [hidden] {
+  display: none !important;
+}
+
+.win-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(0.85rem, 3vw, 1.1rem);
+  color: var(--banana);
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+  animation: glowPulse 1.5s ease-in-out infinite;
+}
+
+.win-form {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.win-form input {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 999px;
+  border: 2px solid var(--accent-purple);
+  background: rgba(26, 0, 40, 0.8);
+  color: var(--text-light);
+  min-width: 0;
+  flex: 1 1 180px;
+  max-width: 260px;
+}
+
+.win-form input:focus {
+  outline: none;
+  border-color: var(--banana);
+}
+
+.small-btn {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  background: var(--banana);
+  color: var(--bg-deep);
+  border: none;
+  border-radius: 999px;
+  padding: 0.6rem 1.2rem;
+}
+
+.small-btn:hover {
+  background: var(--banana-light);
+}
+
+.small-btn.ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border: 2px solid var(--accent-purple);
+}
+
+/* ── Winners ── */
+.winners {
+  margin-bottom: 1.5rem;
+}
+
+.winners h3 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.85rem;
+  color: var(--banana);
+  margin-bottom: 0.8rem;
+}
+
+.winners ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.winners li {
+  background: rgba(90, 26, 138, 0.5);
+  border: 2px solid var(--accent-purple);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-weight: 700;
+  color: var(--banana-light);
+}
+
+.winners li.empty {
+  background: none;
+  border: none;
+  font-weight: 400;
+}
+
+.winners .empty {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ── Health disclaimer ── */
+.luna-disclaimer {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  background: rgba(26, 0, 40, 0.5);
+  border-left: 4px solid var(--banana);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.luna-disclaimer strong {
+  color: var(--banana);
+}
+
+@media (max-width: 480px) {
+  .luna-stage { height: 170px; }
+  .upgrades { grid-template-columns: 1fr; }
+  .flying-banana { font-size: 1.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .luna .tail { animation: none; }
+}
